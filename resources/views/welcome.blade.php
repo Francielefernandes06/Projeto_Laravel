@@ -16,14 +16,15 @@
     flex-direction: column;
     justify-content: center;
 ">
+<!-- csrf é um recurso de segurança que impede a falsificação de solicitações entre sites. -->
     @csrf
   <div class="mb-3">
     <label for="name" class="form-label">Nome</label>
-    <input type="text" name="nome-candidato"class="form-control" placeholder= "Digite seu nome aqui">
+    <input type="text" name="nome_candidato"class="form-control" placeholder= "Digite seu nome aqui">
   </div>
   <div class="mb-3">
     <label for="telefone"  class="form-label">Telefone</label>
-    <input type="text" name="telefone-candidato" class="form-control" placeholder= "Digite seu número de telefone aqui">
+    <input type="text" name="telefone_candidato" class="form-control" placeholder= "Digite seu número de telefone aqui">
   </div>
   <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
