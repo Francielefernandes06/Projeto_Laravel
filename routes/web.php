@@ -1,7 +1,10 @@
 <?php
 
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Candidato;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +22,12 @@ Route::get('/', function () {
 });
 
 Route::post('/cadastrar-candidato', function (request $informacoes) {
-    dd($informacoes->all());
+    Candidato::create([
+        'nome' => $informacoes->nome_candidato,
+        'telefone' => $informacoes->telefone_candidato
+    ]);
+    echo "Candidato cadastrado com sucesso!";
+    
 
 });
 
