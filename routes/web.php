@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/cadastrar-candidato', function (request $informacoes) {
+    dd($informacoes->all());
+
+});
+
+// obs
+// função dd significa debug die
