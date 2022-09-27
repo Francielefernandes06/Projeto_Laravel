@@ -29,21 +29,22 @@ Route::post('/cadastrar-candidato', function (request $informacoes) {
         'nome' => $informacoes->nome_candidato,
         'telefone' => $informacoes->telefone_candidato
     ]);
-echo "Candidato cadastrado com sucesso!";
+    return redirect('/mostrar_candidato');
 });
 
 /* Creating a route that will be used to show all the candidates that are in the database. */
 Route::get('/mostrar_candidato', function () {
     $candidatos = Candidato::all();
     while ($candidatos->count() > 0) {
+        echo "ID: " . $candidatos[0]->id . "<br>";
         echo "<br>";
         echo "Nome: " . $candidatos[0]->nome;
         echo "<br>";
         echo "Telefone: " . $candidatos[0]->telefone;
         echo "<br>";
-        echo "<button class='btn btn-success'>Editar</button>";
+        echo "<a class='btn btn-success'>Editar</a>";
         echo "|";
-        echo "<button class='btn btn-danger'>Excluir</button>";
+        echo "<button class='btn btn-danger' >Excluir</button>";
         echo "<hr>";
         $candidatos->shift();
     } 
@@ -55,6 +56,7 @@ Route::get('/mostrar_candidato/{id}', function ($id) {
     echo "<br>";
     echo $candidato->telefone;
 });
+
 
 Route::get('/editar_candidato/{id}', function ($id) {
     $candidato= Candidato::findOrFail($id);
@@ -69,6 +71,14 @@ Route::put('/atualizar_candidato/{id}', function (Request $informacoes, $id) {
     $candidato->telefone = $informacoes->telefone_candidato;
     $candidato->save();
     echo "Candidato atualizado com sucesso!";
+}
+
+);
+
+Route::get('/deletar_candidato/{id}', function ($id) {
+    $candidato= Candidato::findOrFail($id);
+    $candidato->delete();
+    echo "Candidato deletado com sucesso!";
 }
 
 );
