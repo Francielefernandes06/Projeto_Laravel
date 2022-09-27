@@ -46,8 +46,7 @@ Route::get('/mostrar_candidato', function () {
         echo "<button class='btn btn-danger'>Excluir</button>";
         echo "<hr>";
         $candidatos->shift();
-    }
-
+    } 
 });
 
 Route::get('/mostrar_candidato/{id}', function ($id) {
@@ -55,16 +54,24 @@ Route::get('/mostrar_candidato/{id}', function ($id) {
     echo $candidato->nome;
     echo "<br>";
     echo $candidato->telefone;
-  
-
 });
 
 Route::get('/editar_candidato/{id}', function ($id) {
     $candidato= Candidato::findOrFail($id);
-    
-  
+    return view('editar_candidato', ['candidato' => $candidato]);
+    }
+);
 
-});
+Route::put('/atualizar_candidato/{id}', function (Request $informacoes, $id) {
+
+    $candidato= Candidato::findOrFail($id);
+    $candidato->nome = $informacoes->nome_candidato;
+    $candidato->telefone = $informacoes->telefone_candidato;
+    $candidato->save();
+    echo "Candidato atualizado com sucesso!";
+}
+
+);
     
 
 // obs
